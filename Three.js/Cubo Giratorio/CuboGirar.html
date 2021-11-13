@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Cubo Giratório</title>
+	<!-- Arquivo css -->
+	<style type="text/css">
+		body{
+			margin: 0;
+		}
+	</style>
+</head>
+<body>
+	<script type="text/javascript" src="three.js"></script>
+	<script>
+		/* criando elementos para exibição de objetos cena, camera e renderizador */
+		const cena = new THREE.Scene();
+		const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000)
+		//usando a PerspectiveCamera como camêra.
+
+		//renderizador
+		const renderer = new THREE.WebGLRenderer();
+		renderer.setSize(window.innerWidth, window.innerHeight);
+		document.body.appendChild(renderer.domElement);
+
+		//criando o cubo 
+		const geometry = new THREE.BoxGeometry();
+		const material = new THREE.MeshBasicMaterial( { color: 'red' } );
+		const cube = new THREE.Mesh( geometry, material );
+		cena.add( cube );
+
+		camera.position.z = 5;
+
+		//renderizando a img e vizualizando o cubo 
+		function animacao(){
+			requestAnimationFrame(animacao);
+			//animando o cubo
+			cube.rotation.x += 0.01;
+			cube.rotation.y += 0.01;
+
+			renderer.render(cena, camera);
+		}
+		animacao();
+
+		 
+
+
+	</script>
+</body>
+</html>
